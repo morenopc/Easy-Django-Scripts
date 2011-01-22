@@ -9,6 +9,7 @@
 
 mysql_root_pwd=''
 
+# Install django and mysql packages
 sudo apt-get -y install python-django
 sudo apt-get -y install mysql-server python-mysqldb
 echo '\n'
@@ -20,14 +21,17 @@ then
     echo 'exit'
     exit
 fi
+# Creating Django user and Table
+mysql -u root -p$mysql_root_pwd < create_user_db.sql
 echo '\n'
 echo 'Your Django MySQL user is: django'
 echo 'Your Django MySQL user password is: dj2ango4'
 echo '\n'
-mysql -u root -p$mysql_root_pwd < create_user_db.sql
 echo 'Creating Django Hello World project...'
 mkdir ~/django
 cd ~/django
+
+# Create and configuring Django Hello World project
 django-admin startproject HelloWorld
 cd ~/django/HelloWorld
 sed s/DATABASE_ENGINE\ =\ \'\'/DATABASE_ENGINE\ =\ \'mysql\'/ <settings.py >_settings.py

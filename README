@@ -1,7 +1,15 @@
 Hello everybody!
 
-
 For most of people who wants to discovery Django Framework but don't have too much time to configure it or just want a quick start this script promises install, configure and run a Hello Word Django Project.
+
+Git Installation:
+
+$ git clone git@github.com:morenopc/Easy-Django-Scripts.git
+$ cd Easy-Django-Scripts
+$ chmod 755 easy_install_django.sh  
+$ ./easy_install_django.sh  
+
+Finished! Easy isn't it?
 
 More information:
 http://www.easydjango.net/

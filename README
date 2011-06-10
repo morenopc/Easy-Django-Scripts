@@ -1,3 +1,11 @@
+####################################
+# Script Name: Easy Install Django #
+# Author: Moreno Cunha             #
+# Version 1.2                      #
+# @Ubuntu 11.04 Natty Narwhal      #
+# Django Version 1.2.5 final       #
+####################################
+
 Hello everybody!
 
 For most of people who wants to discovery Django Framework but don't have too much time to configure it or just want a quick start this script promises install, configure and run a Hello Word Django Project.

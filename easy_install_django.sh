@@ -3,8 +3,9 @@
 ####################################
 # Script Name: Easy Install Django #
 # Author: Moreno Cunha             #
-# Version 1.0                      #
-# @Ubuntu 10.04 LTS Lucid Lynx     #
+# Version 1.2                      #
+# @Ubuntu 11.04 Natty Narwhal      #
+# Django Version 1.2.5 final       #
 ####################################
 
 mysql_root_pwd=''
@@ -34,14 +35,28 @@ cd ~/django
 # Create and configuring Django Hello World project
 django-admin startproject HelloWorld
 cd ~/django/HelloWorld
-sed s/DATABASE_ENGINE\ =\ \'\'/DATABASE_ENGINE\ =\ \'mysql\'/ <settings.py >_settings.py
-cat _settings.py > settings.py
-sed s/DATABASE_NAME\ =\ \'\'/DATABASE_NAME\ =\ \'django\'/ <settings.py >_settings.py
-cat _settings.py > settings.py
-sed s/DATABASE_USER\ =\ \'\'/DATABASE_USER\ =\ \'django\'/ <settings.py >_settings.py
-cat _settings.py > settings.py
-sed s/DATABASE_PASSWORD\ =\ \'\'/DATABASE_PASSWORD\ =\ \'dj2ango4\'/ <settings.py >_settings.py
-cat _settings.py > settings.py
+django_version=$(./manage.py --version)
+if [ "$django_version" = "1.2.5" ]
+then
+    # sed s/regexp/replacement/
+    sed s/\'ENGINE\':\ \'django.db.backends.\'/\'ENGINE\':\ \'django.db.backends.mysql\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+    sed s/\'NAME\':\ \'\'/\'NAME\':\ \'django\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+    sed s/\'USER\':\ \'\'/\'USER\':\ \'django\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+    sed s/\'PASSWORD\':\ \'\'/\'PASSWORD\':\ \'dj2ango4\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+else
+    sed s/DATABASE_ENGINE\ =\ \'\'/DATABASE_ENGINE\ =\ \'mysql\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+    sed s/DATABASE_NAME\ =\ \'\'/DATABASE_NAME\ =\ \'django\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+    sed s/DATABASE_USER\ =\ \'\'/DATABASE_USER\ =\ \'django\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+    sed s/DATABASE_PASSWORD\ =\ \'\'/DATABASE_PASSWORD\ =\ \'dj2ango4\'/ <settings.py >_settings.py
+    cat _settings.py > settings.py
+fi
 rm _settings.py
 echo 'Now answer the questions'
 python manage.py syncdb
